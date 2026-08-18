@@ -52,11 +52,11 @@ button{ font-family:'Fredoka', sans-serif; border:none; cursor:pointer; -webkit-
 }
 .petal{
   position:absolute; top:0; left:0;
-  width:16px; height:28px; margin:-14px 0 0 -8px;
+  width:26px; height:46px; margin:-23px 0 0 -13px;
   border-radius:50% 50% 50% 50% / 65% 65% 35% 35%;
-  transform-origin:8px 40px;
+  transform-origin:13px 65px;
   opacity:0;
-  animation:petalFly 1.3s cubic-bezier(.25,.65,.35,1) forwards;
+  animation:petalFly 1.5s cubic-bezier(.25,.65,.35,1) forwards;
 }
 @keyframes petalFly{
   0%{ transform:rotate(var(--angle)) translateY(0) scale(.2); opacity:0; }
@@ -64,7 +64,7 @@ button{ font-family:'Fredoka', sans-serif; border:none; cursor:pointer; -webkit-
   100%{ transform:rotate(var(--angle)) translateY(var(--dist)) scale(1); opacity:0; }
 }
 .hi-text{
-  font-size:clamp(4rem, 16vw, 9rem);
+  font-size:clamp(6rem, 24vw, 15rem);
   font-weight:700;
   color:var(--rose-dark);
   letter-spacing:.04em;
@@ -83,9 +83,9 @@ button{ font-family:'Fredoka', sans-serif; border:none; cursor:pointer; -webkit-
   margin-top:2.6rem;
   background:var(--rose);
   color:#fff;
-  font-size:1rem;
+  font-size:1.2rem;
   font-weight:600;
-  padding:.85rem 1.9rem;
+  padding:1.1rem 2.4rem;
   border-radius:999px;
   box-shadow:0 6px 18px rgba(232,99,127,.35);
   opacity:0;
@@ -112,7 +112,7 @@ button{ font-family:'Fredoka', sans-serif; border:none; cursor:pointer; -webkit-
 
 .rat-wrap{
   position:absolute;
-  width:110px; height:74px;
+  width:200px; height:134px;
   left:20px; top:20px;
   transition:transform 1.8s cubic-bezier(.65,.05,.36,1);
   z-index:3;
@@ -120,6 +120,45 @@ button{ font-family:'Fredoka', sans-serif; border:none; cursor:pointer; -webkit-
 }
 .rat-wrap svg{ width:100%; height:100%; display:block; }
 .rat-flip{ transform: scaleX(-1); }
+
+/* the "no" button, carried in the rat's mouth */
+.carried-no{
+  --flip:1;
+  position:absolute;
+  left:6%; top:56%;
+  transform:translate(-50%,-50%) scaleX(var(--flip)) rotate(-8deg);
+  background:#fff;
+  color:var(--ink);
+  border:2px solid #EADFCF;
+  border-radius:999px;
+  font-family:'Fredoka', sans-serif;
+  font-weight:600;
+  font-size:1rem;
+  padding:.4rem .85rem;
+  line-height:1;
+  white-space:nowrap;
+  box-shadow:0 3px 8px rgba(0,0,0,.15);
+  animation:carriedJiggle .5s ease-in-out infinite;
+  cursor:pointer;
+  -webkit-user-select:none; user-select:none;
+}
+@keyframes carriedJiggle{
+  0%,100%{ transform:translate(-50%,-50%) scaleX(var(--flip)) rotate(-8deg); }
+  50%{ transform:translate(-50%,-50%) scaleX(var(--flip)) rotate(-2deg) translateY(-1px); }
+}
+.carried-no.fleeing{
+  animation:carriedShake .3s ease-in-out infinite;
+}
+@keyframes carriedShake{
+  0%,100%{ transform:translate(-50%,-50%) scaleX(var(--flip)) rotate(-14deg); }
+  50%{ transform:translate(-50%,-50%) scaleX(var(--flip)) rotate(8deg); }
+}
+.hint-note{
+  font-family:'Caveat', cursive;
+  font-size:1.15rem;
+  color:var(--sage-dark);
+  margin:-.9rem 0 1.3rem;
+}
 
 .leg{ transform-origin: center top; animation:legSwing .5s ease-in-out infinite; }
 .leg.b{ animation-delay:.25s; }
@@ -142,28 +181,28 @@ button{ font-family:'Fredoka', sans-serif; border:none; cursor:pointer; -webkit-
   position:relative; z-index:2;
   background:rgba(255,255,255,.72);
   backdrop-filter: blur(6px);
-  border-radius:28px;
-  padding:2.2rem 2rem 2rem;
-  max-width:420px;
+  border-radius:32px;
+  padding:2.8rem 2.6rem 2.6rem;
+  max-width:560px;
   box-shadow:0 14px 40px rgba(139,94,69,.14);
 }
 .script-note{
-  font-size:1.6rem;
+  font-size:2rem;
   color:var(--rose-dark);
   margin-bottom:.2rem;
 }
 .prompt-card h2{
-  font-size:clamp(1.5rem, 5vw, 2.1rem);
+  font-size:clamp(2rem, 6.5vw, 3.1rem);
   color:var(--ink);
   line-height:1.25;
-  margin-bottom:1.6rem;
+  margin-bottom:1.8rem;
 }
 .btn-row{
   display:flex; gap:1rem; justify-content:center; position:relative;
 }
 .btn{
-  font-size:1.05rem; font-weight:600;
-  padding:.8rem 2.1rem;
+  font-size:1.3rem; font-weight:600;
+  padding:1.1rem 2.9rem;
   border-radius:999px;
   transition:transform .15s ease, box-shadow .15s ease;
 }
@@ -172,15 +211,6 @@ button{ font-family:'Fredoka', sans-serif; border:none; cursor:pointer; -webkit-
   box-shadow:0 6px 16px rgba(127,160,115,.4);
 }
 .btn.yes:hover{ transform:translateY(-2px) scale(1.03); }
-.btn.no{
-  background:#fff; color:var(--ink);
-  border:2px solid #EADFCF;
-}
-#noBtn2.dodging{
-  position:fixed;
-  z-index:50;
-  transition: left .16s ease, top .16s ease, transform .16s ease;
-}
 .dodge-quip{
   position:fixed; z-index:49;
   font-family:'Caveat', cursive; font-size:1.6rem; color:var(--rose-dark);
@@ -198,7 +228,7 @@ button{ font-family:'Fredoka', sans-serif; border:none; cursor:pointer; -webkit-
   font-size:1.3rem;
   animation:driftDown linear infinite;
 }
-.dog-wrap{ width:min(60vw, 240px); margin-bottom:1rem; }
+.dog-wrap{ width:min(72vw, 400px); margin-bottom:1.2rem; }
 .dog-wrap svg{ width:100%; height:100%; display:block; overflow:visible; }
 .dog-tail{ transform-origin: 10px 70px; animation:dogWag .5s ease-in-out infinite; }
 @keyframes dogWag{
@@ -217,21 +247,21 @@ button{ font-family:'Fredoka', sans-serif; border:none; cursor:pointer; -webkit-
 }
 
 .ask-text{
-  font-size:clamp(1.7rem, 6vw, 2.6rem);
+  font-size:clamp(2.4rem, 9vw, 4.2rem);
   color:var(--ink);
   margin-top:.4rem;
-  max-width:520px;
+  max-width:760px;
   line-height:1.3;
 }
 .ask-sub{
-  font-size:1.4rem;
+  font-size:1.9rem;
   color:var(--rose-dark);
-  margin-top:.4rem;
+  margin-top:.6rem;
 }
 .yes.big{
-  margin-top:1.8rem;
-  font-size:1.2rem;
-  padding:1rem 2.6rem;
+  margin-top:2.2rem;
+  font-size:1.5rem;
+  padding:1.3rem 3.4rem;
   background:var(--rose-dark);
   color:#fff;
   box-shadow:0 8px 22px rgba(232,99,127,.4);
@@ -242,11 +272,11 @@ button{ font-family:'Fredoka', sans-serif; border:none; cursor:pointer; -webkit-
 .celebration{ display:none; flex-direction:column; align-items:center; }
 #scene-3.celebrated .celebration{ display:flex; }
 .celebrate-title{
-  font-size:clamp(2.2rem, 8vw, 3.4rem);
+  font-size:clamp(3.2rem, 11vw, 5.2rem);
   color:var(--rose-dark);
   animation:hiPop .6s cubic-bezier(.34,1.56,.64,1) forwards;
 }
-.celebrate-sub{ font-size:1.5rem; color:var(--ink); margin-top:.6rem; }
+.celebrate-sub{ font-size:2rem; color:var(--ink); margin-top:.8rem; }
 
 .confetti-piece{
   position:fixed; top:-10vh; z-index:60;
@@ -259,7 +289,7 @@ button{ font-family:'Fredoka', sans-serif; border:none; cursor:pointer; -webkit-
 }
 
 @media (max-width:480px){
-  .rat-wrap{ width:88px; height:60px; }
+  .rat-wrap{ width:150px; height:100px; }
 }
 
 @media (prefers-reduced-motion: reduce){
