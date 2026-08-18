@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>a question.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Caveat:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="stage">
+
+  <!-- SCENE 1 -->
+  <section id="scene-1" class="scene active">
+    <div class="petal-burst" id="petalBurst"></div>
+    <h1 class="hi-text">HI</h1>
+    <button class="continue-btn" id="toScene2">continue →</button>
+  </section>
+
+  <!-- SCENE 2 -->
+  <section id="scene-2" class="scene">
+    <div class="rat-wrap" id="ratWrap">
+      <svg viewBox="0 0 120 80">
+        <g class="rat-tail">
+          <path d="M12,42 C-6,42 -6,60 8,58" fill="none" stroke="#8C5E45" stroke-width="5" stroke-linecap="round"/>
+        </g>
+        <g class="rat-body">
+          <ellipse class="leg a" cx="42" cy="66" rx="6" ry="9" fill="#8C5E45"/>
+          <ellipse class="leg b" cx="60" cy="66" rx="6" ry="9" fill="#8C5E45"/>
+          <ellipse class="leg a" cx="78" cy="66" rx="6" ry="9" fill="#8C5E45"/>
+          <ellipse class="leg b" cx="93" cy="63" rx="6" ry="9" fill="#8C5E45"/>
+          <ellipse cx="62" cy="46" rx="38" ry="24" fill="#B98466"/>
+          <circle cx="30" cy="24" r="10" fill="#F3C9CE"/>
+          <circle cx="30" cy="24" r="6" fill="#FFE1E6"/>
+          <circle cx="48" cy="20" r="10" fill="#F3C9CE"/>
+          <circle cx="48" cy="20" r="6" fill="#FFE1E6"/>
+          <circle cx="26" cy="40" r="17" fill="#B98466"/>
+          <circle cx="20" cy="38" r="2.6" fill="#4A3226"/>
+          <circle cx="20.7" cy="37.2" r=".9" fill="#fff"/>
+          <ellipse cx="12" cy="44" rx="3.4" ry="2.4" fill="#E8637F"/>
+          <line x1="9" y1="43" x2="-4" y2="41" stroke="#4A3226" stroke-width="1"/>
+          <line x1="9" y1="46" x2="-4" y2="47" stroke="#4A3226" stroke-width="1"/>
+          <line x1="9" y1="49" x2="-3" y2="52" stroke="#4A3226" stroke-width="1"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="prompt-card">
+      <p class="script-note">psst...</p>
+      <h2>can I ask you a question?</h2>
+      <div class="btn-row">
+        <button class="btn yes" id="yesBtn2">yes</button>
+        <button class="btn no" id="noBtn2">no</button>
+      </div>
+    </div>
+    <div class="dodge-quip" id="dodgeQuip">you can't catch me! 🐭</div>
+  </section>
+
+  <!-- SCENE 3 -->
+  <section id="scene-3" class="scene">
+    <div class="pre-celebrate" style="display:flex; flex-direction:column; align-items:center;">
+      <div class="dog-wrap">
+        <svg viewBox="0 0 200 180">
+          <g class="dog-tail">
+            <path d="M18,110 C-4,100 -6,132 16,138" fill="none" stroke="#C99A6B" stroke-width="10" stroke-linecap="round"/>
+          </g>
+          <ellipse cx="100" cy="130" rx="58" ry="42" fill="#E4B382"/>
+          <path d="M55,55 C40,20 62,10 72,42 Z" fill="#C99A6B"/>
+          <path d="M145,55 C160,20 138,10 128,42 Z" fill="#C99A6B"/>
+          <circle cx="100" cy="72" r="42" fill="#EFC89B"/>
+          <ellipse cx="100" cy="92" rx="16" ry="12" fill="#fff"/>
+          <ellipse class="dog-eye" cx="84" cy="60" rx="4.4" ry="5.4" fill="#4A3226"/>
+          <ellipse class="dog-eye" cx="116" cy="60" rx="4.4" ry="5.4" fill="#4A3226"/>
+          <ellipse cx="100" cy="82" rx="6" ry="4.5" fill="#4A3226"/>
+          <path d="M100,86 Q100,94 92,94" fill="none" stroke="#4A3226" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M100,86 Q100,94 108,94" fill="none" stroke="#4A3226" stroke-width="2.5" stroke-linecap="round"/>
+          <ellipse cx="72" cy="76" rx="7" ry="4.5" fill="#F3AFAF" opacity=".7"/>
+          <ellipse cx="128" cy="76" rx="7" ry="4.5" fill="#F3AFAF" opacity=".7"/>
+          <ellipse cx="70" cy="150" rx="10" ry="14" fill="#EFC89B"/>
+          <ellipse cx="130" cy="150" rx="10" ry="14" fill="#EFC89B"/>
+          <g class="held-heart">
+            <path d="M100,118 C92,106 72,110 72,126 C72,140 100,156 100,156 C100,156 128,140 128,126 C128,110 108,106 100,118 Z" fill="#E8637F"/>
+          </g>
+        </svg>
+      </div>
+
+      <h2 class="ask-text">may I be your boyfriend?</h2>
+      <p class="ask-sub script">no pressure... okay, maybe a little 🐾</p>
+      <button class="btn yes big" id="yesBtn3">yes ❤️</button>
+    </div>
+
+    <div class="celebration" id="celebration">
+      <div class="celebrate-title">yay! 🎉</div>
+      <p class="celebrate-sub script">okay. it's official now.</p>
+    </div>
+  </section>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
