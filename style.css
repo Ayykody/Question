@@ -40,8 +40,30 @@ button{ font-family:'Fredoka', sans-serif; border:none; cursor:pointer; -webkit-
   overflow:hidden;
   padding:6vh 6vw;
   text-align:center;
+  z-index:0;
 }
 .scene.active{ opacity:1; pointer-events:auto; }
+
+/* ---------------- AMBIENT WIND-BLOWN FLOWERS ---------------- */
+.ambient-flowers{
+  position:absolute; inset:0;
+  z-index:-1;
+  overflow:hidden;
+  pointer-events:none;
+}
+.ambient-flower{
+  position:absolute;
+  animation-name:windSway;
+  animation-timing-function:ease-in-out;
+  animation-iteration-count:infinite;
+  will-change:transform;
+}
+.ambient-flower svg{ width:100%; height:100%; display:block; }
+@keyframes windSway{
+  0%{   transform:translate(calc(var(--sway) * -1px), 0px)      rotate(calc(var(--rot) * -1deg)); }
+  50%{  transform:translate(calc(var(--sway) * 1px), -10px)     rotate(calc(var(--rot) * 1deg)); }
+  100%{ transform:translate(calc(var(--sway) * -1px), 0px)      rotate(calc(var(--rot) * -1deg)); }
+}
 
 /* ---------------- SCENE 1 ---------------- */
 #scene-1{
@@ -64,15 +86,16 @@ button{ font-family:'Fredoka', sans-serif; border:none; cursor:pointer; -webkit-
   100%{ transform:rotate(var(--angle)) translateY(var(--dist)) scale(1); opacity:0; }
 }
 .hi-text{
-  font-size:clamp(6rem, 24vw, 15rem);
+  font-size:clamp(2.6rem, 11vw, 6.4rem);
   font-weight:700;
   color:var(--rose-dark);
-  letter-spacing:.04em;
+  letter-spacing:.01em;
   opacity:0;
   transform:scale(.3);
   animation:hiPop .8s cubic-bezier(.34,1.56,.64,1) forwards;
   animation-delay:1.1s;
-  text-shadow: 0 6px 0 rgba(255,143,168,.18);
+  text-shadow: 0 5px 0 rgba(255,143,168,.18);
+  max-width:90vw;
 }
 @keyframes hiPop{
   0%{ opacity:0; transform:scale(.3) rotate(-8deg); }
@@ -96,18 +119,69 @@ button{ font-family:'Fredoka', sans-serif; border:none; cursor:pointer; -webkit-
 .continue-btn:hover{ transform:translateY(-2px); box-shadow:0 9px 22px rgba(232,99,127,.45); }
 @keyframes fadeUp{ from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:translateY(0); } }
 
+/* ---------------- SCENE TIMELINE ---------------- */
+.timeline-title{
+  font-size:clamp(1.8rem, 5.5vw, 2.7rem);
+  color:var(--ink);
+  margin-bottom:.4rem;
+}
+.timeline{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  gap:1.5rem;
+  max-width:480px;
+  width:100%;
+  margin:1.8rem 0 2.2rem;
+  padding-left:.4rem;
+}
+.timeline::before{
+  content:'';
+  position:absolute;
+  left:14px; top:6px; bottom:6px;
+  width:2px;
+  background:linear-gradient(180deg, var(--rose) 0%, var(--gold) 50%, var(--sage-dark) 100%);
+  opacity:.4;
+}
+.timeline-item{
+  position:relative;
+  padding-left:2.6rem;
+  text-align:left;
+  opacity:0;
+  transform:translateY(14px);
+}
+.timeline-item::before{
+  content:'';
+  position:absolute;
+  left:6px; top:4px;
+  width:16px; height:16px;
+  border-radius:50%;
+  background:var(--rose-dark);
+  box-shadow:0 0 0 4px var(--cream);
+}
+.timeline-item .t-label{
+  font-family:'Caveat', cursive;
+  font-size:1.5rem;
+  color:var(--rose-dark);
+  margin:0;
+}
+.timeline-item .t-desc{
+  font-family:'Nunito', sans-serif;
+  font-size:1.02rem;
+  color:var(--ink);
+  margin:.15rem 0 0;
+}
+.scene.active .timeline-item{
+  animation:itemIn .6s ease forwards;
+  animation-delay: calc(var(--i, 0) * .18s + .25s);
+}
+@keyframes itemIn{
+  to{ opacity:1; transform:translateY(0); }
+}
+
 /* ---------------- SCENE 2 ---------------- */
 #scene-2{
   background: linear-gradient(180deg, var(--cream) 0%, #F6EEDD 100%);
-}
-.leaf-drift{
-  position:absolute; top:-40px; font-size:1.4rem; opacity:.55;
-  animation:driftDown linear infinite;
-  color:var(--sage-dark);
-}
-@keyframes driftDown{
-  0%{ transform:translateY(-5vh) translateX(0) rotate(0deg); }
-  100%{ transform:translateY(110vh) translateX(20px) rotate(200deg); }
 }
 
 .rat-wrap{
@@ -152,6 +226,12 @@ button{ font-family:'Fredoka', sans-serif; border:none; cursor:pointer; -webkit-
 @keyframes carriedShake{
   0%,100%{ transform:translate(-50%,-50%) scaleX(var(--flip)) rotate(-14deg); }
   50%{ transform:translate(-50%,-50%) scaleX(var(--flip)) rotate(8deg); }
+}
+.joke-note{
+  font-family:'Caveat', cursive;
+  font-size:1.2rem;
+  color:var(--sage-dark);
+  margin:-1rem 0 .6rem;
 }
 .hint-note{
   font-family:'Caveat', cursive;
@@ -223,11 +303,6 @@ button{ font-family:'Fredoka', sans-serif; border:none; cursor:pointer; -webkit-
 #scene-3{
   background: radial-gradient(circle at 50% 30%, #FFF0EC 0%, var(--cream) 70%);
 }
-.heart-drift{
-  position:absolute; top:-40px; opacity:.5; color:var(--rose);
-  font-size:1.3rem;
-  animation:driftDown linear infinite;
-}
 .dog-wrap{ width:min(72vw, 400px); margin-bottom:1.2rem; }
 .dog-wrap svg{ width:100%; height:100%; display:block; overflow:visible; }
 .dog-tail{ transform-origin: 10px 70px; animation:dogWag .5s ease-in-out infinite; }
@@ -272,8 +347,10 @@ button{ font-family:'Fredoka', sans-serif; border:none; cursor:pointer; -webkit-
 .celebration{ display:none; flex-direction:column; align-items:center; }
 #scene-3.celebrated .celebration{ display:flex; }
 .celebrate-title{
-  font-size:clamp(3.2rem, 11vw, 5.2rem);
+  font-size:clamp(1.9rem, 6.2vw, 3.4rem);
   color:var(--rose-dark);
+  max-width:720px;
+  line-height:1.25;
   animation:hiPop .6s cubic-bezier(.34,1.56,.64,1) forwards;
 }
 .celebrate-sub{ font-size:2rem; color:var(--ink); margin-top:.8rem; }

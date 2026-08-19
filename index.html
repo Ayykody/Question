@@ -15,13 +15,40 @@
 
   <!-- SCENE 1 -->
   <section id="scene-1" class="scene active">
+    <div class="ambient-flowers" id="ambient1"></div>
     <div class="petal-burst" id="petalBurst"></div>
-    <h1 class="hi-text">HI</h1>
-    <button class="continue-btn" id="toScene2">continue →</button>
+    <h1 class="hi-text">HI Annie!</h1>
+    <button class="continue-btn" id="toTimeline">continue →</button>
+  </section>
+
+  <!-- SCENE TIMELINE -->
+  <section id="scene-timeline" class="scene">
+    <div class="ambient-flowers" id="ambientT"></div>
+    <h2 class="timeline-title">a few of my favorite moments</h2>
+    <div class="timeline">
+      <div class="timeline-item" style="--i:0">
+        <p class="t-label">fourth of july</p>
+        <p class="t-desc">beat you in darts and danced to Lana Del Rey 🎯🌹</p>
+      </div>
+      <div class="timeline-item" style="--i:1">
+        <p class="t-label">our first date</p>
+        <p class="t-desc">picnic at the lake, handcuffed together the whole time 🧺⛓️</p>
+      </div>
+      <div class="timeline-item" style="--i:2">
+        <p class="t-label">the drawings</p>
+        <p class="t-desc">picasso-esque portraits of each other 🎨</p>
+      </div>
+      <div class="timeline-item" style="--i:3">
+        <p class="t-label">the checkup</p>
+        <p class="t-desc">now I know I only need you as my doctor 🩺</p>
+      </div>
+    </div>
+    <button class="continue-btn" id="toScene2">keep going →</button>
   </section>
 
   <!-- SCENE 2 -->
   <section id="scene-2" class="scene">
+    <div class="ambient-flowers" id="ambient2"></div>
     <div class="rat-wrap" id="ratWrap">
       <svg viewBox="0 0 120 80">
         <g class="rat-tail">
@@ -50,8 +77,9 @@
     </div>
 
     <div class="prompt-card">
-      <p class="script-note">psst...</p>
+      <p class="script-note">psst, Annie...</p>
       <h2>can I ask you a question?</h2>
+      <p class="joke-note">(and no, I'm not about to throw you in a rice bath 🍚)</p>
       <p class="hint-note">the rat's got the "no" — good luck catching it 🐭</p>
       <div class="btn-row">
         <button class="btn yes" id="yesBtn2">yes</button>
@@ -62,6 +90,7 @@
 
   <!-- SCENE 3 -->
   <section id="scene-3" class="scene">
+    <div class="ambient-flowers" id="ambient3"></div>
     <div class="pre-celebrate" style="display:flex; flex-direction:column; align-items:center;">
       <div class="dog-wrap">
         <svg viewBox="0 0 200 180">
@@ -94,7 +123,7 @@
     </div>
 
     <div class="celebration" id="celebration">
-      <div class="celebrate-title">yay! 🎉</div>
+      <div class="celebrate-title">can't wait to be handcuffed to you! ⛓️❤️</div>
       <p class="celebrate-sub script">okay. it's official now.</p>
     </div>
   </section>

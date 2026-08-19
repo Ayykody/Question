@@ -1,3 +1,65 @@
+// ---------- AMBIENT WIND-BLOWN FLOWERS (all scenes) ----------
+function flowerSVG(petalColor, centerColor) {
+  return `<svg viewBox="0 0 40 40">
+    <ellipse cx="20" cy="9"  rx="6" ry="9" fill="${petalColor}"/>
+    <ellipse cx="20" cy="31" rx="6" ry="9" fill="${petalColor}"/>
+    <ellipse cx="9"  cy="20" rx="9" ry="6" fill="${petalColor}"/>
+    <ellipse cx="31" cy="20" rx="9" ry="6" fill="${petalColor}"/>
+    <circle cx="20" cy="20" r="5" fill="${centerColor}"/>
+  </svg>`;
+}
+
+function seedAmbientFlowers(containerId, count, palettes) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  for (let i = 0; i < count; i++) {
+    const el = document.createElement('div');
+    el.className = 'ambient-flower';
+    const size = 20 + Math.random() * 30;
+    const left = Math.random() * 100;
+    const top = Math.random() * 100;
+    const sway = 12 + Math.random() * 28;
+    const rot = 5 + Math.random() * 10;
+    const dur = 6 + Math.random() * 6;
+    const delay = -Math.random() * dur;
+    const opacity = 0.22 + Math.random() * 0.28;
+    const [petalColor, centerColor] = palettes[Math.floor(Math.random() * palettes.length)];
+
+    el.style.width = size + 'px';
+    el.style.height = size + 'px';
+    el.style.left = left + '%';
+    el.style.top = top + '%';
+    el.style.opacity = opacity;
+    el.style.setProperty('--sway', sway);
+    el.style.setProperty('--rot', rot);
+    el.style.animationDuration = dur + 's';
+    el.style.animationDelay = delay + 's';
+    el.innerHTML = flowerSVG(petalColor, centerColor);
+    container.appendChild(el);
+  }
+}
+
+seedAmbientFlowers('ambient1', 16, [
+  ['#FF8FA8', '#F5C563'],
+  ['#FFC7D6', '#E8637F'],
+  ['#F5C563', '#E8637F']
+]);
+seedAmbientFlowers('ambientT', 12, [
+  ['#FF8FA8', '#F5C563'],
+  ['#FFC7D6', '#7FA073'],
+  ['#F5C563', '#E8637F']
+]);
+seedAmbientFlowers('ambient2', 12, [
+  ['#F3C9CE', '#F5C563'],
+  ['#FFC7D6', '#7FA073'],
+  ['#E8637F', '#F5C563']
+]);
+seedAmbientFlowers('ambient3', 12, [
+  ['#FFC7D6', '#E8637F'],
+  ['#FF8FA8', '#F5C563'],
+  ['#F3AFAF', '#E8637F']
+]);
+
 // ---------- SCENE 1: petal burst ----------
 const petalBurst = document.getElementById('petalBurst');
 const petalColors = ['#FF8FA8', '#FFC7D6', '#F5C563', '#E8637F'];
@@ -18,6 +80,10 @@ function goTo(id) {
   document.querySelectorAll('.scene').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
+
+document.getElementById('toTimeline').addEventListener('click', () => {
+  goTo('scene-timeline');
+});
 
 document.getElementById('toScene2').addEventListener('click', () => {
   goTo('scene-2');
